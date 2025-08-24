@@ -108,8 +108,8 @@ fun SearchMusicsScreen(
                 ),
                 modifier = Modifier.fillMaxWidth()
             ) { researchStatus ->
-                /*when (researchStatus) { TODO
-                    Content -> {
+                when (researchStatus) {
+                    Content -> {/*
                         val successStatus = uiState.researchStatus as? ResearchStatus.Success
                             ?: return@Crossfade
 
@@ -146,7 +146,7 @@ fun SearchMusicsScreen(
                                     isPagingError = uiState.isPagingError,
                                     isEndReached = uiState.isEndReached,
                                 ) else EmptyResultScreen(modifier = Modifier.fillMaxSize())
-                        }
+                        }*/
                     }
 
                     Loading -> LinearProgressIndicator(
@@ -161,7 +161,7 @@ fun SearchMusicsScreen(
                     Idle -> IdleScreen(
                         modifier.fillMaxSize()
                     )
-                }*/
+                }
             }
         }
     }

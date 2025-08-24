@@ -8,4 +8,9 @@
     <string name="search_placeholder_albums">Quel album as-tu en tête\u00a0?</string>
     <string name="search_placeholder_artists">Quel artiste veux-tu écouter\u00a0?</string>
     <string name="search_placeholder_musics">Quelle musique te ferait plaisir\u00a0? </string>
+    <string name="error_message_network">Veuillez vérifier votre connexion et réessayer.</string>
+    <string name="error_title_generic">Oups, une erreur est survenue 😕</string>
+    <string name="action_retry">Réessayer 🎵</string>
+    <string name="idle_title">🎧\u00a0\u00a0Trouve ton contenu préféré parmi des milliers de sélections</string>
+    <string name="idle_subtitle">Commencez en tapant le nom d’un artiste, d’un album ou d’une chanson.</string>
 </resources>
