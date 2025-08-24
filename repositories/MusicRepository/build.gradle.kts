@@ -12,6 +12,8 @@ android {
 
 dependencies {
 
+    implementation(projects.domains.searchMusics)
+
     // Retrofit
     implementation(platform(libs.retrofit.bom))
     implementation(libs.retrofit)

@@ -1,6 +1,6 @@
 @file:OptIn(InternalSerializationApi::class)
 
-package infomaniak.musicrepository.model
+package com.infomaniak.musicrepository.model
 
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.Serializable

@@ -1,8 +1,8 @@
-package infomaniak.musicrepository
+package com.infomaniak.musicrepository
 
-import infomaniak.musicrepository.model.SearchAlbumsResponse
-import infomaniak.musicrepository.model.SearchArtistsResponse
-import infomaniak.musicrepository.model.SearchSongsResponse
+import com.infomaniak.musicrepository.model.SearchAlbumsResponse
+import com.infomaniak.musicrepository.model.SearchArtistsResponse
+import com.infomaniak.musicrepository.model.SearchSongsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
