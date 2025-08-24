@@ -54,6 +54,14 @@ androidx-hilt-navigation-compose = "androidx.hilt:hilt-navigation-compose:1.2.0"
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilCompose" }
 
+# https://github.com/cashapp/turbine
+turbine = "app.cash.turbine:turbine:1.2.1"
+
+# https://github.com/Kotlin/kotlinx.coroutines
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.10.2" }
+
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
