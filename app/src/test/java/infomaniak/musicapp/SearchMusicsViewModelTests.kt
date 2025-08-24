@@ -3,9 +3,9 @@ package infomaniak.musicapp
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import app.cash.turbine.turbineScope
-import com.infomaniak.searchmusic.model.Album
-import com.infomaniak.searchmusic.model.Artist
-import com.infomaniak.searchmusic.model.Song
+import com.infomaniak.searchmusic.randomAlbums
+import com.infomaniak.searchmusic.randomArtists
+import com.infomaniak.searchmusic.randomSongs
 import infomaniak.musicapp.searchmusics.SearchMusicsViewModel
 import infomaniak.musicapp.searchmusics.SearchMusicsViewModel.SearchMusicsUiState.ResearchStatus.Error
 import infomaniak.musicapp.searchmusics.SearchMusicsViewModel.SearchMusicsUiState.ResearchStatus.Idle
@@ -22,7 +22,6 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import kotlin.random.Random
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
@@ -870,56 +869,3 @@ private fun initViewModel(
 private const val charlesAznavourInput = "Charles Aznavour"
 private const val bobMarleyInput = "Bob Marley"
 private const val shakiraInput = "Shakira"
-
-fun randomArtists(count: Int = 20): List<Artist> = // TODO Move Random functions in domains module
-    List(count) {
-        randomArtist()
-    }
-
-fun randomArtist() = Artist(
-    artistId = Random.nextLong(1, Long.MAX_VALUE),
-    artistName = Random.nextInt().toString(),
-    artistLinkUrl = Random.nextInt().toString(),
-    primaryGenreName = Random.nextInt().toString()
-)
-
-fun randomAlbums(count: Int = 20): List<Album> =
-    List(count) {
-        randomAlbum()
-    }
-
-fun randomAlbum() = Album(
-    artistId = Random.nextLong(1, Long.MAX_VALUE),
-    collectionId = Random.nextLong(1, Long.MAX_VALUE),
-    collectionName = Random.nextInt().toString(),
-    artistName = Random.nextInt().toString(),
-    artistViewUrl = Random.nextInt().toString(),
-    collectionViewUrl = Random.nextInt().toString(),
-    artworkUrl100 = Random.nextInt().toString(),
-    trackCount = Random.nextInt(1, 30),
-    primaryGenreName = Random.nextInt().toString(),
-    releaseDate = Random.nextInt().toString()
-)
-
-fun randomSongs(count: Int = 20): List<Song> =
-    List(count) {
-        randomSong()
-    }
-
-fun randomSong() = Song(
-    trackId = Random.nextLong(1, Long.MAX_VALUE),
-    artistId = Random.nextLong(1, Long.MAX_VALUE),
-    collectionId = Random.nextLong(1, Long.MAX_VALUE),
-    artistName = Random.nextInt().toString(),
-    collectionName = Random.nextInt().toString(),
-    trackName = Random.nextInt().toString(),
-    trackViewUrl = Random.nextInt().toString(),
-    previewUrl = Random.nextInt().toString(),
-    artistViewUrl = Random.nextInt().toString(),
-    collectionViewUrl = Random.nextInt().toString(),
-    collectionArtistViewUrl = Random.nextInt().toString(),
-    primaryGenreName = Random.nextInt().toString(),
-    releaseDate = Random.nextInt().toString(),
-    artworkUrl100 = Random.nextInt().toString(),
-    trackTimeMillis = Random.nextInt()
-)
