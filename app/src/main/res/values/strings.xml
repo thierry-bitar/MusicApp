@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MusicApp</string>
+    <string name="research_type_albums">Albums</string>
+    <string name="research_type_artists">Artistes</string>
+    <string name="research_type_musics">Musiques</string>
+    <string name="search_helper_text">Tu peux choisir un type de contenu pour orienter tes recherches</string>
+    <string name="search_helper">Choisis ton style de recherche : musique, artiste ou album.</string>
+    <string name="search_placeholder_albums">Quel album as-tu en tête\u00a0?</string>
+    <string name="search_placeholder_artists">Quel artiste veux-tu écouter\u00a0?</string>
+    <string name="search_placeholder_musics">Quelle musique te ferait plaisir\u00a0? </string>
 </resources>
