@@ -19,6 +19,8 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "MusicApp"
 include(":app")
- 
+include(":repositories:MusicRepository")
