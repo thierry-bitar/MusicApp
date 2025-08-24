@@ -1,6 +1,5 @@
 package com.infomaniak.musicrepository
 
-import android.util.Log
 import com.infomaniak.musicrepository.mapper.toAlbumFromDomains
 import com.infomaniak.musicrepository.mapper.toArtistFromDomains
 import com.infomaniak.musicrepository.mapper.toSongFromDomains
@@ -51,7 +50,7 @@ class MusicRepositoryImpl @Inject constructor(
 private inline fun <T> apiCall(block: () -> T): Result<T> =
     runCatching { block() }
         .onFailure { throwable ->
-            Log.e("MusicRepositoryImpl", "API call failed", throwable)
+            println("MusicRepositoryImpl API call failed $throwable")
         }
 
 private inline fun <T, R> Result<T>.mapResults(

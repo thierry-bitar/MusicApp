@@ -28,7 +28,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
 
+    testImplementation(projects.domains.searchMusics)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
