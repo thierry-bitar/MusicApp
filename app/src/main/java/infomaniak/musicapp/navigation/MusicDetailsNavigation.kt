@@ -7,9 +7,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import infomaniak.musicapp.musicdetails.album.AlbumDetailsScreen
-import infomaniak.musicapp.musicdetails.artist.ArtistDetailsScreen
-import infomaniak.musicapp.musicdetails.song.SongDetailsScreen
+import infomaniak.musicapp.musicdetails.composables.album.AlbumDetailsScreen
+import infomaniak.musicapp.musicdetails.composables.artist.ArtistDetailsScreen
+import infomaniak.musicapp.musicdetails.composables.song.SongDetailsRoute
 import infomaniak.musicapp.searchmusics.model.Album
 import infomaniak.musicapp.searchmusics.model.Artist
 import infomaniak.musicapp.searchmusics.model.Song
@@ -31,7 +31,7 @@ fun NavController.navigateToSongDetailsScreen(
 
 fun NavGraphBuilder.songDetailsScreen() {
     composable(route = SongDetailsRoute) {
-        SongDetailsScreen(
+        SongDetailsRoute(
             modifier = Modifier.fillMaxSize()
         )
     }

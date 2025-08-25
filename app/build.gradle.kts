@@ -22,7 +22,12 @@ dependencies {
     // Hilt
     implementation(libs.dagger.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.process)
     ksp(libs.dagger.hilt.compiler)
+
+    // ExoPlayer
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -32,6 +37,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
 
     testImplementation(testFixtures(projects.domains.searchMusics))
     testImplementation(libs.kotlin.test)

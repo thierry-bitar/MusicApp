@@ -1,4 +1,4 @@
-package infomaniak.musicapp.musicdetails.album
+package infomaniak.musicapp.musicdetails.composables.album
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

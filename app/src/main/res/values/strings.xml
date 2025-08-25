@@ -3,13 +3,20 @@
     <string name="app_name">MusicApp</string>
     <string name="empty_result_subtitle">🙂 Essaie un autre mot-clé ou explore une autre catégorie.</string>
     <string name="empty_result_title">🎵 Aucun résultat trouvé</string>
-    <string name="end_of_list_wording">C’est tout pour l’instant 🎵</string>
+    <string name="end_of_list_wording">C’est tout pour l\'instant 🎵</string>
     <string name="error_message_network">Veuillez vérifier votre connexion et réessayer.</string>
     <string name="error_title_generic">Oups, une erreur est survenue 😕</string>
-    <string name="idle_subtitle">Commencez en tapant le nom d’un artiste, d’un album ou d’une chanson.</string>
+    <string name="external_link_album">Album</string>
+    <string name="external_link_album_artist">Artiste de l\'album</string>
+    <string name="external_link_artist">Artiste</string>
+    <string name="external_link_track">Morceau</string>
+    <string name="idle_subtitle">Commencez en tapant le nom d\'un artiste, d\'un album ou d\'une chanson.</string>
     <string name="idle_title">🎧\u00a0\u00a0Trouve ton contenu préféré parmi des milliers de sélections</string>
     <string name="loader_wording">Chargement…\u00a0🎵</string>
     <string name="paging_error_message">😕 Impossible de charger plus de résultats</string>
+    <string name="player_start_label">Lecture</string>
+    <string name="player_restart_label">Rejouer</string>
+    <string name="player_pause_label">Pause</string>
     <string name="research_type_albums">Albums</string>
     <string name="research_type_artists">Artistes</string>
     <string name="research_type_musics">Musiques</string>
@@ -18,5 +25,5 @@
     <string name="search_placeholder_albums">Quel album as-tu en tête\u00a0?</string>
     <string name="search_placeholder_artists">Quel artiste veux-tu écouter\u00a0?</string>
     <string name="search_placeholder_musics">Quelle musique te ferait plaisir\u00a0? </string>
-    <string name="song_item_subtitle">%1s\u00a0•\u00a0%2s</string>
+    <string name="song_item_subtitle">%1$s\u00a0•\u00a0%2$s</string>
 </resources>

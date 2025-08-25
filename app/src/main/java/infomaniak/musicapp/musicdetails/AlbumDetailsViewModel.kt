@@ -1,4 +1,4 @@
-package infomaniak.musicapp.musicdetails.album
+package infomaniak.musicapp.musicdetails
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
