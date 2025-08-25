@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicApp">
         <activity
-            android:name=".searchmusics.SearchMusicsActivity"
+            android:name=".SearchMusicsActivity"
             android:exported="true"
             android:theme="@style/Theme.MusicApp">
             <intent-filter>

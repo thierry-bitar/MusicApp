@@ -51,11 +51,17 @@ import infomaniak.musicapp.searchmusics.composables.UiMode.Loading
 import infomaniak.musicapp.searchmusics.composables.paging.albums.Albums
 import infomaniak.musicapp.searchmusics.composables.paging.artists.Artists
 import infomaniak.musicapp.searchmusics.composables.paging.songs.Songs
+import infomaniak.musicapp.searchmusics.model.Album
+import infomaniak.musicapp.searchmusics.model.Artist
+import infomaniak.musicapp.searchmusics.model.Song
 
 private enum class UiMode { Content, Loading, Error, Idle }
 
 @Composable
 fun SearchMusicsScreen(
+    onSongClick: (Song) -> Unit,
+    onAlbumClick: (Album) -> Unit,
+    onArtistClick: (Artist) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SearchMusicsViewModel = hiltViewModel(),
 ) {
@@ -123,6 +129,7 @@ fun SearchMusicsScreen(
                                     isPaging = uiState.isPaging,
                                     isPagingError = uiState.isPagingError,
                                     isEndReached = uiState.isEndReached,
+                                    onSongClick = onSongClick,
                                 ) else EmptyResultScreen(modifier = Modifier.fillMaxSize())
 
                             is ResearchStatus.Success.SearchItem.Albums -> if (items.albums.isNotEmpty())
@@ -134,6 +141,7 @@ fun SearchMusicsScreen(
                                     isPaging = uiState.isPaging,
                                     isPagingError = uiState.isPagingError,
                                     isEndReached = uiState.isEndReached,
+                                    onAlbumClick = onAlbumClick,
                                 ) else EmptyResultScreen(modifier = Modifier.fillMaxSize())
 
                             is ResearchStatus.Success.SearchItem.Artists -> if (items.artists.isNotEmpty())
@@ -145,6 +153,7 @@ fun SearchMusicsScreen(
                                     isPaging = uiState.isPaging,
                                     isPagingError = uiState.isPagingError,
                                     isEndReached = uiState.isEndReached,
+                                    onArtistClick = onArtistClick,
                                 ) else EmptyResultScreen(modifier = Modifier.fillMaxSize())
                         }
                     }

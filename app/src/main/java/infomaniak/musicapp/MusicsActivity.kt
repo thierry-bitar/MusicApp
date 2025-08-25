@@ -1,4 +1,4 @@
-package infomaniak.musicapp.searchmusics
+package infomaniak.musicapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import infomaniak.musicapp.navigation.SearchMusicsNavHost
 import infomaniak.musicapp.searchmusics.composables.SearchMusicsScreen
 import infomaniak.musicapp.ui.theme.MusicAppTheme
 
@@ -19,8 +21,11 @@ class SearchMusicsActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MusicAppTheme {
-                SearchMusicsScreen(
-                    modifier = Modifier.fillMaxSize()
+                val navController = rememberNavController()
+
+                SearchMusicsNavHost(
+                    modifier = Modifier.fillMaxSize(),
+                    navController = navController,
                 )
             }
         }
@@ -32,7 +37,10 @@ class SearchMusicsActivity : ComponentActivity() {
 fun SearchMusicsScreenPreview() {
     MusicAppTheme {
         SearchMusicsScreen(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            onArtistClick = {},
+            onAlbumClick = {},
+            onSongClick = {},
         )
     }
 }

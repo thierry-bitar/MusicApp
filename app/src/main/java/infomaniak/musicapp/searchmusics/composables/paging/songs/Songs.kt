@@ -16,9 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import infomaniak.musicapp.searchmusics.SearchMusicsViewModel.SearchMusicsUiState.ResearchStatus
 import infomaniak.musicapp.searchmusics.composables.paging.PagingFooter
+import infomaniak.musicapp.searchmusics.model.Song
 
 @Composable
 internal fun Songs(
+    onSongClick: (Song) -> Unit,
     items: ResearchStatus.Success.SearchItem.Songs,
     listState: LazyListState,
     loadNextPage: () -> Unit,
@@ -54,7 +56,7 @@ internal fun Songs(
                 artistName = song.artistName,
                 collectionName = song.collectionName,
                 coverUrl = song.artworkUrl100,
-                onClick = { /* nav vers détail TODO */ },
+                onClick = { onSongClick(song) },
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }

@@ -16,9 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import infomaniak.musicapp.searchmusics.SearchMusicsViewModel.SearchMusicsUiState.ResearchStatus
 import infomaniak.musicapp.searchmusics.composables.paging.PagingFooter
+import infomaniak.musicapp.searchmusics.model.Album
 
 @Composable
 internal fun Albums(
+    onAlbumClick: (Album) -> Unit,
     items: ResearchStatus.Success.SearchItem.Albums,
     listState: LazyListState,
     loadNextPage: () -> Unit,
@@ -51,7 +53,7 @@ internal fun Albums(
         ) { album ->
             Album(
                 album = album,
-                onClick = { /* nav vers détail TODO */ },
+                onClick = { onAlbumClick(album) },
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
