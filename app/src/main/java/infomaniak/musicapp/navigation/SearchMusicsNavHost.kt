@@ -1,9 +1,6 @@
 package infomaniak.musicapp.navigation
 
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -18,9 +15,7 @@ fun SearchMusicsNavHost(
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = modifier
-            .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+        modifier = modifier.fillMaxSize()
     ) {
         searchMusicsScreen(
             onSongClick = { song -> navController.navigateToSongDetailsScreen(song = song) },
