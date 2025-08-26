@@ -5,6 +5,7 @@ import com.infomaniak.musicrepository.randomAlbum
 import com.infomaniak.searchmusic.model.Album
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.time.Instant
 
 class AlbumMapperTest {
 
@@ -24,6 +25,10 @@ class AlbumMapperTest {
         assertEquals(album.artworkUrl100, albumFromDomains.artworkUrl100)
         assertEquals(album.trackCount, albumFromDomains.trackCount)
         assertEquals(album.primaryGenreName, albumFromDomains.primaryGenreName)
-        assertEquals(album.releaseDate, albumFromDomains.releaseDate)
+        assertEquals(runCatching {
+            album.releaseDate?.let {
+                Instant.parse(it)
+            }
+        }.getOrNull(), albumFromDomains.releaseInstant)
     }
 }

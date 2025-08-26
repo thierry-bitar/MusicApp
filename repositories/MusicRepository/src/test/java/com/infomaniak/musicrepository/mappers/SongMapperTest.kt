@@ -5,6 +5,7 @@ import com.infomaniak.musicrepository.randomSong
 import com.infomaniak.searchmusic.model.Song
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.time.Instant
 
 class SongMapperTest {
 
@@ -26,7 +27,11 @@ class SongMapperTest {
         assertEquals(song.collectionViewUrl, songFromDomains.collectionViewUrl)
         assertEquals(song.collectionArtistViewUrl, songFromDomains.collectionArtistViewUrl)
         assertEquals(song.primaryGenreName, songFromDomains.primaryGenreName)
-        assertEquals(song.releaseDate, songFromDomains.releaseDate)
+        assertEquals(runCatching {
+            song.releaseDate?.let {
+                Instant.parse(it)
+            }
+        }.getOrNull(), songFromDomains.releaseInstant)
         assertEquals(song.artworkUrl100, songFromDomains.artworkUrl100)
         assertEquals(song.trackTimeMillis, songFromDomains.trackTimeMillis)
     }

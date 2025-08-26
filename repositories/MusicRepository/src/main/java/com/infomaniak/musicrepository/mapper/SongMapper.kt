@@ -1,6 +1,7 @@
 package com.infomaniak.musicrepository.mapper
 
 import com.infomaniak.musicrepository.model.Song
+import java.time.Instant
 import com.infomaniak.searchmusic.model.Song as SongFromDomains
 
 fun Song.toSongFromDomains(): SongFromDomains = SongFromDomains(
@@ -16,7 +17,7 @@ fun Song.toSongFromDomains(): SongFromDomains = SongFromDomains(
     collectionViewUrl = collectionViewUrl,
     collectionArtistViewUrl = collectionArtistViewUrl,
     primaryGenreName = primaryGenreName,
-    releaseDate = releaseDate,
+    releaseInstant = runCatching { releaseDate?.let { Instant.parse(it) } }.getOrNull(),
     artworkUrl100 = artworkUrl100,
     trackTimeMillis = trackTimeMillis
 )

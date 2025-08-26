@@ -16,7 +16,7 @@ internal fun SongFromDomains.toSong(): Song = Song(
     collectionViewUrl = collectionViewUrl,
     collectionArtistViewUrl = collectionArtistViewUrl,
     primaryGenreName = primaryGenreName,
-    releaseDate = releaseDate,
+    releaseInstant = releaseInstant,
     artworkUrl100 = artworkUrl100,
     trackTimeMillis = trackTimeMillis
 )

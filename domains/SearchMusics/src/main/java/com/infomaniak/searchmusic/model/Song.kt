@@ -1,5 +1,7 @@
 package com.infomaniak.searchmusic.model
 
+import java.time.Instant
+
 data class Song(
     val trackId: Long,
     val artistId: Long,
@@ -16,7 +18,7 @@ data class Song(
     val collectionArtistViewUrl: String? = null,
 
     val primaryGenreName: String? = null,
-    val releaseDate: String? = null,
+    val releaseInstant: Instant? = null,
     val artworkUrl100: String? = null,
     val trackTimeMillis: Int? = null,
 )

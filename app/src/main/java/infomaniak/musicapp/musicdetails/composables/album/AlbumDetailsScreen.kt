@@ -85,11 +85,10 @@ private fun AlbumDetailsScreen(
             }
 
             Spacer(Modifier.height(12.dp))
-            // TODO Extract year in Repo properly with a parser
             InfoChips(
                 modifier = Modifier.fillMaxWidth(),
                 genre = uiState.album.primaryGenreName,
-                year = uiState.album.releaseDate?.takeIf { it.length >= 4 }?.substring(0, 4),
+                year = uiState.album.releaseYear,
                 trackCount = uiState.album.trackCount
             )
 

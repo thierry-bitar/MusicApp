@@ -1,7 +1,10 @@
 package infomaniak.musicapp.searchmusics.model
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import java.time.Instant
+import java.time.ZoneId.systemDefault
 
 @Parcelize
 data class Album(
@@ -18,5 +21,11 @@ data class Album(
     val artworkUrl100: String? = null,
     val trackCount: Int? = null,
     val primaryGenreName: String? = null,
-    val releaseDate: String? = null,
-) : Parcelable
+    val releaseInstant: Instant? = null,
+) : Parcelable {
+
+    @IgnoredOnParcel
+    val releaseYear = releaseInstant?.atZone(systemDefault())
+        ?.year
+        ?.toString()
+}

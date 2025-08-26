@@ -26,7 +26,7 @@ class SongMapperTest {
         assertEquals(songFromDomains.collectionViewUrl, song.collectionViewUrl)
         assertEquals(songFromDomains.collectionArtistViewUrl, song.collectionArtistViewUrl)
         assertEquals(songFromDomains.primaryGenreName, song.primaryGenreName)
-        assertEquals(songFromDomains.releaseDate, song.releaseDate)
+        assertEquals(songFromDomains.releaseInstant, song.releaseInstant)
         assertEquals(songFromDomains.artworkUrl100, song.artworkUrl100)
         assertEquals(songFromDomains.trackTimeMillis, song.trackTimeMillis)
     }

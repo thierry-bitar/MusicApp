@@ -24,6 +24,6 @@ class AlbumMapperTest {
         assertEquals(albumFromDomains.artworkUrl100, album.artworkUrl100)
         assertEquals(albumFromDomains.trackCount, album.trackCount)
         assertEquals(albumFromDomains.primaryGenreName, album.primaryGenreName)
-        assertEquals(albumFromDomains.releaseDate, album.releaseDate)
+        assertEquals(albumFromDomains.releaseInstant, album.releaseInstant)
     }
 }

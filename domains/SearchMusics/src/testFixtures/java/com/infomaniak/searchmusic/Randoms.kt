@@ -3,6 +3,7 @@ package com.infomaniak.searchmusic
 import com.infomaniak.searchmusic.model.Album
 import com.infomaniak.searchmusic.model.Artist
 import com.infomaniak.searchmusic.model.Song
+import java.time.Instant
 import kotlin.random.Random
 
 fun randomArtists(count: Int = 20): List<Artist> =
@@ -32,7 +33,7 @@ fun randomAlbum() = Album(
     artworkUrl100 = Random.nextInt().toString(),
     trackCount = Random.nextInt(1, 30),
     primaryGenreName = Random.nextInt().toString(),
-    releaseDate = Random.nextInt().toString()
+    releaseInstant = Instant.now()
 )
 
 fun randomSongs(count: Int = 20): List<Song> =
@@ -53,7 +54,7 @@ fun randomSong() = Song(
     collectionViewUrl = Random.nextInt().toString(),
     collectionArtistViewUrl = Random.nextInt().toString(),
     primaryGenreName = Random.nextInt().toString(),
-    releaseDate = Random.nextInt().toString(),
+    releaseInstant = Instant.now(),
     artworkUrl100 = Random.nextInt().toString(),
     trackTimeMillis = Random.nextInt()
 )

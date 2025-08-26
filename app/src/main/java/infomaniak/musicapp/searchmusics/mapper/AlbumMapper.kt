@@ -14,5 +14,5 @@ internal fun AlbumFromDomains.toAlbum(): Album = Album(
     artworkUrl100 = artworkUrl100,
     trackCount = trackCount,
     primaryGenreName = primaryGenreName,
-    releaseDate = releaseDate
+    releaseInstant = releaseInstant
 )

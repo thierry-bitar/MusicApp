@@ -23,8 +23,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import infomaniak.musicapp.musicdetails.SongDetailsViewModel
-import infomaniak.musicapp.musicdetails.composables.InfoChips
 import infomaniak.musicapp.musicdetails.composables.ExternalLinksSection
+import infomaniak.musicapp.musicdetails.composables.InfoChips
 
 @Composable
 fun SongDetailsRoute(
@@ -94,11 +94,10 @@ private fun SongDetailsScreen(
             )
 
             Spacer(Modifier.height(12.dp))
-            // TODO Extract year in Repo properly with a parser
             InfoChips(
                 modifier = Modifier.fillMaxWidth(),
                 genre = uiState.song.primaryGenreName,
-                year = uiState.song.releaseDate?.takeIf { it.length >= 4 }?.substring(0, 4),
+                year = uiState.song.releaseYear,
                 durationMs = uiState.song.trackTimeMillis
             )
 
