@@ -61,7 +61,12 @@ class MusicPlayerControllerImpl @Inject constructor(
 
             override fun onIsLoadingChanged(isLoading: Boolean) {
                 super.onIsLoadingChanged(isLoading)
-                _state.update { it.copy(isLoading = isLoading) }
+                _state.update {
+                    it.copy(
+                        isLoading = isLoading,
+                        isError = if (isLoading) false else it.isError
+                    )
+                }
             }
         })
         scope.launch {
