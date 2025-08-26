@@ -1,6 +1,6 @@
 package infomaniak.musicapp.mappers
 
-import infomaniak.musicapp.randomSong
+import com.infomaniak.searchmusic.randomSong
 import infomaniak.musicapp.searchmusics.mapper.toSong
 import infomaniak.musicapp.searchmusics.model.Song
 import org.junit.Assert.assertEquals

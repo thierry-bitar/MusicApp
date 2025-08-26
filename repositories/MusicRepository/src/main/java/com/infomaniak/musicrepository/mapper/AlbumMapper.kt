@@ -13,5 +13,6 @@ fun Album.toAlbumFromDomains(): AlbumFromDomains = AlbumFromDomains(
     artworkUrl100 = artworkUrl100,
     trackCount = trackCount,
     primaryGenreName = primaryGenreName,
-    releaseDate = releaseDate
+    releaseDate = releaseDate,
+    copyright = copyright,
 )

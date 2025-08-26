@@ -15,15 +15,36 @@ internal class FakeMusicApiService(
 ) : MusicApiService {
 
     override suspend fun searchSongs(
-        term: String, media: String, entity: String?, limit: Int, offset: Int
+        term: String,
+        media: String,
+        entity: String?,
+        limit: Int,
+        offset: Int,
+        attribute: String,
+        country: String,
+        lang: String
     ): SearchSongsResponse = onSearchSongs()
 
     override suspend fun searchArtists(
-        term: String, media: String, entity: String, limit: Int, offset: Int
+        term: String,
+        media: String,
+        entity: String,
+        limit: Int,
+        offset: Int,
+        attribute: String,
+        country: String,
+        lang: String
     ): SearchArtistsResponse = onSearchArtists()
 
     override suspend fun searchAlbums(
-        term: String, media: String, entity: String, limit: Int, offset: Int
+        term: String,
+        media: String,
+        entity: String,
+        limit: Int,
+        offset: Int,
+        attribute: String,
+        country: String,
+        lang: String
     ): SearchAlbumsResponse = onSearchAlbums()
 }
 

@@ -1,6 +1,6 @@
 package infomaniak.musicapp.mappers
 
-import infomaniak.musicapp.randomAlbum
+import com.infomaniak.searchmusic.randomAlbum
 import infomaniak.musicapp.searchmusics.mapper.toAlbum
 import infomaniak.musicapp.searchmusics.model.Album
 import org.junit.Assert.assertEquals
@@ -18,6 +18,7 @@ class AlbumMapperTest {
         assertEquals(albumFromDomains.collectionId, album.collectionId)
         assertEquals(albumFromDomains.collectionName, album.collectionName)
         assertEquals(albumFromDomains.artistName, album.artistName)
+        assertEquals(albumFromDomains.copyright, album.copyright)
         assertEquals(albumFromDomains.artistViewUrl, album.artistViewUrl)
         assertEquals(albumFromDomains.collectionViewUrl, album.collectionViewUrl)
         assertEquals(albumFromDomains.artworkUrl100, album.artworkUrl100)

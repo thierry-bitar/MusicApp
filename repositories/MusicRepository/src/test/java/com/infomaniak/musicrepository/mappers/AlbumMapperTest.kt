@@ -18,6 +18,7 @@ class AlbumMapperTest {
         assertEquals(album.collectionId, albumFromDomains.collectionId)
         assertEquals(album.collectionName, albumFromDomains.collectionName)
         assertEquals(album.artistName, albumFromDomains.artistName)
+        assertEquals(album.copyright, albumFromDomains.copyright)
         assertEquals(album.artistViewUrl, albumFromDomains.artistViewUrl)
         assertEquals(album.collectionViewUrl, albumFromDomains.collectionViewUrl)
         assertEquals(album.artworkUrl100, albumFromDomains.artworkUrl100)

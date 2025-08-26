@@ -9,6 +9,7 @@ internal fun AlbumFromDomains.toAlbum(): Album = Album(
     collectionName = collectionName,
     artistName = artistName,
     artistViewUrl = artistViewUrl,
+    copyright = copyright,
     collectionViewUrl = collectionViewUrl,
     artworkUrl100 = artworkUrl100,
     trackCount = trackCount,

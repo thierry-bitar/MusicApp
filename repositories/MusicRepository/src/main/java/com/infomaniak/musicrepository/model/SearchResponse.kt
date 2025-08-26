@@ -52,6 +52,7 @@ data class Album(
 
     val collectionName: String,
     val artistName: String,
+    val copyright: String? = null,
 
     val artistViewUrl: String? = null,
     val collectionViewUrl: String? = null,

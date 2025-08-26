@@ -14,7 +14,9 @@ interface MusicApiService {
         @Query("entity") entity: String? = "song",
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0,
-        // @Query("attribute") attribute: String = "songTerm" // (optionnel, plus tard)
+        @Query("attribute") attribute: String = "songTerm",
+        @Query("country") country: String = "FR",
+        @Query("lang") lang: String = "fr_fr",
     ): SearchSongsResponse
 
     @GET("search")
@@ -24,7 +26,9 @@ interface MusicApiService {
         @Query("entity") entity: String = "musicArtist",
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0,
-        // @Query("attribute") attribute: String = "artistTerm"
+        @Query("attribute") attribute: String = "artistTerm",
+        @Query("country") country: String = "FR",
+        @Query("lang") lang: String = "fr_fr",
     ): SearchArtistsResponse
 
     @GET("search")
@@ -34,6 +38,8 @@ interface MusicApiService {
         @Query("entity") entity: String = "album",
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0,
-        // @Query("attribute") attribute: String = "albumTerm"
+        @Query("attribute") attribute: String = "albumTerm",
+        @Query("country") country: String = "FR",
+        @Query("lang") lang: String = "fr_fr",
     ): SearchAlbumsResponse
 }

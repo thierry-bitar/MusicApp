@@ -22,8 +22,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import infomaniak.musicapp.musicdetails.AlbumDetailsViewModel
-import infomaniak.musicapp.musicdetails.composables.InfoChips
 import infomaniak.musicapp.musicdetails.composables.ExternalLinksSection
+import infomaniak.musicapp.musicdetails.composables.InfoChips
 
 @Composable
 fun AlbumDetailsRoute(
@@ -76,6 +76,13 @@ private fun AlbumDetailsScreen(
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+            uiState.album.copyright?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
 
             Spacer(Modifier.height(12.dp))
             // TODO Extract year in Repo properly with a parser
