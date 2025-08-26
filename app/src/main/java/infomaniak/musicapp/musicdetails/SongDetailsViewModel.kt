@@ -59,7 +59,7 @@ class SongDetailsViewModel @Inject constructor(
 
     internal fun onPlay() = player.play()
     internal fun onPause() = player.pause()
-    internal fun onSeekTo(ms: Long) = player.seekTo(ms)
+    internal fun onSeekTo(ms: Long) = player.seekTo(ms.coerceAtLeast(0))
     internal fun onReplay() {
         player.seekTo(0L); player.play()
     }
