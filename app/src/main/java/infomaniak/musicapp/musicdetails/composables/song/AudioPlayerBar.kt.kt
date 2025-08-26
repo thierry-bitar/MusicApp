@@ -1,4 +1,4 @@
-package infomaniak.musicapp.musicdetails.composables
+package infomaniak.musicapp.musicdetails.composables.song
 
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
