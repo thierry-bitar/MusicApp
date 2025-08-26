@@ -39,6 +39,7 @@ fun SongDetailsRoute(
         onPause = viewModel::onPause,
         onSeekTo = viewModel::onSeekTo,
         onReplay = viewModel::onReplay,
+        onRetry = viewModel::retry,
         modifier = modifier
     )
 }
@@ -51,6 +52,7 @@ private fun SongDetailsScreen(
     onPause: () -> Unit,
     onSeekTo: (Long) -> Unit,
     onReplay: () -> Unit,
+    onRetry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -103,16 +105,19 @@ private fun SongDetailsScreen(
 
             Spacer(Modifier.height(16.dp))
             uiState.song.previewUrl?.let {
-                AudioPlayerBar(
+                AudioPlayerControls(
                     modifier = Modifier.fillMaxWidth(),
                     trackName = uiState.song.trackName,
                     isPlaying = uiState.playerState.isPlaying,
                     positionMs = uiState.playerState.positionMs,
                     durationMs = uiState.playerState.durationMs,
                     isEndReached = uiState.playerState.isEndReached,
+                    isError = uiState.playerState.error,
+                    isLoading = uiState.playerState.isLoading,
                     onPlay = onPlay,
                     onPause = onPause,
                     onSeekTo = onSeekTo,
+                    onRetry = onRetry,
                     onReplay = onReplay,
                 )
             }

@@ -1,5 +1,6 @@
 <resources>
     <string name="action_retry">Réessayer 🎵</string>
+    <string name="action_retry_music_player">Oups 😕 La lecture a échoué… Réessaie 🎵</string>
     <string name="app_name">MusicApp</string>
     <string name="empty_result_subtitle">🙂 Essaie un autre mot-clé ou explore une autre catégorie.</string>
     <string name="empty_result_title">🎵 Aucun résultat trouvé</string>
@@ -26,4 +27,5 @@
     <string name="search_placeholder_artists">Quel artiste veux-tu écouter\u00a0?</string>
     <string name="search_placeholder_musics">Quelle musique te ferait plaisir\u00a0? </string>
     <string name="song_item_subtitle">%1$s\u00a0•\u00a0%2$s</string>
+    <string name="trackName">🎶\u00a0%1$s</string>
 </resources>

@@ -1,6 +1,7 @@
 package infomaniak.musicapp.musicdetails
 
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import kotlinx.coroutines.CoroutineScope
@@ -37,11 +38,30 @@ class MusicPlayerControllerImpl @Inject constructor(
     init {
         player.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
-                _state.update { it.copy(isEnded = playbackState == Player.STATE_ENDED) }
+                _state.update {
+                    it.copy(
+                        isEnded = playbackState == Player.STATE_ENDED,
+                        isError = if (playbackState == Player.STATE_READY) false else it.isError
+                    )
+                }
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 _state.update { it.copy(isPlaying = isPlaying) }
+            }
+
+            override fun onPlayerError(error: PlaybackException) {
+                _state.update {
+                    it.copy(
+                        isError = true,
+                        isLoading = false
+                    )
+                }
+            }
+
+            override fun onIsLoadingChanged(isLoading: Boolean) {
+                super.onIsLoadingChanged(isLoading)
+                _state.update { it.copy(isLoading = isLoading) }
             }
         })
         scope.launch {
@@ -78,4 +98,6 @@ data class PlayerState(
     val durationMs: Long = 0L,
     val isPlaying: Boolean = false,
     val isEnded: Boolean = false,
+    val isError: Boolean = false,
+    val isLoading: Boolean = false,
 )

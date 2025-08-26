@@ -1,5 +1,8 @@
 package infomaniak.musicapp.musicdetails.composables.song
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +18,7 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -29,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -37,7 +42,7 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import infomaniak.musicapp.R
 
 @Composable
-fun AudioPlayerBar(
+fun AudioPlayerControls(
     trackName: String,
     isPlaying: Boolean,
     positionMs: Long,
@@ -47,6 +52,9 @@ fun AudioPlayerBar(
     onPause: () -> Unit,
     onSeekTo: (Long) -> Unit,
     onReplay: () -> Unit,
+    onRetry: () -> Unit,
+    isError: Boolean,
+    isLoading: Boolean,
     modifier: Modifier = Modifier,
 ) {
     var isUserScrubbing by rememberSaveable { mutableStateOf(false) }
@@ -59,6 +67,32 @@ fun AudioPlayerBar(
     }
 
     ElevatedCard(modifier = modifier) {
+        AnimatedVisibility(
+            visible = isLoading,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            LinearProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp)
+            )
+        }
+        AnimatedVisibility(
+            visible = isError,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                text = stringResource(R.string.action_retry_music_player),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall,
+            )
+        }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -66,28 +100,44 @@ fun AudioPlayerBar(
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
-            if (isEndReached) {
-                FilledIconButton(onClick = onReplay) {
+            if (isError) {
+                FilledIconButton(
+                    onClick = onRetry,
+                    enabled = !isLoading
+                ) {
                     Icon(
                         imageVector = Icons.Filled.Refresh, contentDescription = stringResource(
-                            R.string.player_restart_label
+                            id = R.string.action_retry
                         )
                     )
                 }
             } else {
-                FilledIconButton(onClick = { if (isPlaying) onPause() else onPlay() }) {
-                    Icon(
-                        imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-                        contentDescription = if (isPlaying)
-                            stringResource(R.string.player_pause_label)
-                        else stringResource(R.string.player_start_label)
-                    )
+                if (isEndReached) {
+                    FilledIconButton(onClick = onReplay) {
+                        Icon(
+                            imageVector = Icons.Filled.Refresh, contentDescription = stringResource(
+                                id = R.string.player_restart_label
+                            )
+                        )
+                    }
+                } else {
+                    FilledIconButton(
+                        onClick = { if (isPlaying) onPause() else onPlay() },
+                        enabled = !isLoading
+                    ) {
+                        Icon(
+                            imageVector = if (isPlaying) Icons.Filled.Pause else Icons.Filled.PlayArrow,
+                            contentDescription = if (isPlaying)
+                                stringResource(R.string.player_pause_label)
+                            else stringResource(R.string.player_start_label)
+                        )
+                    }
                 }
             }
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "🎶 $trackName",
+                    text = stringResource(id = R.string.trackName, trackName),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,

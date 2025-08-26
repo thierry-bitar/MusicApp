@@ -42,9 +42,18 @@ class SongDetailsViewModel @Inject constructor(
                         durationMs = playerState.durationMs,
                         positionMs = playerState.positionMs,
                         isEndReached = playerState.isEnded,
+                        error = playerState.isError,
+                        isLoading = playerState.isLoading,
                     )
                 )
             }
+        }
+    }
+
+    internal fun retry() {
+        song.previewUrl?.let { url ->
+            player.load(url = url)
+            player.play()
         }
     }
 
@@ -69,6 +78,8 @@ class SongDetailsViewModel @Inject constructor(
             val durationMs: Long = 0L,
             val positionMs: Long = 0L,
             val isEndReached: Boolean = false,
+            val isLoading: Boolean = false,
+            val error: Boolean = false,
         ) : Parcelable
     }
 }
