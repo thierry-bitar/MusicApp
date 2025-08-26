@@ -65,7 +65,7 @@ internal fun InfoChips(
     }
 }
 
-private fun formatDurationMs(ms: Int): String { // TODO Extract that operation in VM ?
+private fun formatDurationMs(ms: Int): String {
     val totalSec = ms / 1000
     val min = totalSec / 60
     val sec = totalSec % 60
