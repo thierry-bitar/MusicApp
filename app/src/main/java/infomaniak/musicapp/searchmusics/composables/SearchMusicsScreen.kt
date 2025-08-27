@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -74,10 +75,13 @@ fun SearchMusicsScreen(
             modifier = modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
+                .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             SearchMusicsFilterChips(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
                 selected = uiState.userResearchType,
                 onSelectedChange = viewModel::onResearchTypeChanged
             )
@@ -178,10 +182,14 @@ fun SearchMusicsScreen(
 
 @Composable
 private fun SearchMusicsFilterChips(
+    modifier: Modifier = Modifier,
     selected: ResearchType,
     onSelectedChange: (ResearchType) -> Unit,
 ) {
-    Row {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.Center
+    ) {
         listOf(MUSICS, ALBUMS, ARTISTS).forEach { researchType ->
             FilterChip(
                 selected = selected == researchType,
@@ -247,15 +255,5 @@ private fun ColumnScope.SearchBar(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
         ),
-    )
-
-    Spacer(Modifier.height(4.dp))
-
-    Text(
-        text = stringResource(R.string.search_helper_text),
-        style = MaterialTheme.typography.bodySmall.copy(
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        ),
-        modifier = Modifier.align(Alignment.Start)
     )
 }

@@ -22,7 +22,7 @@ interface MusicPlayerController {
     fun load(url: String)
     fun play()
     fun pause()
-    fun seekTo(ms: Long)
+    fun seekTo(position: Long)
     fun release()
 }
 
@@ -90,7 +90,7 @@ class MusicPlayerControllerImpl @Inject constructor(
 
     override fun play() = player.play()
     override fun pause() = player.pause()
-    override fun seekTo(ms: Long) = player.seekTo(ms.coerceAtLeast(0L))
+    override fun seekTo(position: Long) = player.seekTo(position.coerceAtLeast(0L))
 
     override fun release() {
         scope.cancel()

@@ -81,13 +81,13 @@ class SongDetailsViewModelTest {
                 awaitItem() // ready
 
                 // Play
-                viewModel.onPlay()
+                viewModel.play()
                 awaitItem().apply {
                     assertTrue(playerState.isPlaying)
                 }
                 assertEquals(1, fakePlayer.playCalls)
 
-                viewModel.onPause()
+                viewModel.pause()
                 awaitItem().apply {
                     assertFalse(playerState.isPlaying)
                 }
@@ -111,7 +111,7 @@ class SongDetailsViewModelTest {
                 fakePlayer.emitReady(durationMs = 90_000)
                 awaitItem() // ready
 
-                viewModel.onSeekTo(30_000)
+                viewModel.seekTo(30_000)
                 awaitItem().apply {
                     assertEquals(30_000, playerState.positionMs)
                 }
@@ -139,7 +139,7 @@ class SongDetailsViewModelTest {
                     assertEquals(1_200, playerState.positionMs)
                 }
 
-                viewModel.onSeekTo(-10)
+                viewModel.seekTo(-10)
                 awaitItem().apply {
                     assertEquals(0L, playerState.positionMs)
                 }
@@ -253,21 +253,21 @@ class SongDetailsViewModelTest {
                 fakePlayer.emitReady(durationMs = 60_000)
                 awaitItem() // ready
 
-                viewModel.onPlay()
+                viewModel.play()
                 val play1 = awaitItem()
                 assertTrue(play1.playerState.isPlaying)
                 assertEquals(1, fakePlayer.playCalls)
 
-                viewModel.onPlay()
+                viewModel.play()
                 assertEquals(2, fakePlayer.playCalls)
                 expectNoEvents()
 
-                viewModel.onPause()
+                viewModel.pause()
                 val pause1 = awaitItem()
                 assertFalse(pause1.playerState.isPlaying)
                 assertEquals(1, fakePlayer.pauseCalls)
 
-                viewModel.onPause()
+                viewModel.pause()
                 assertEquals(2, fakePlayer.pauseCalls)
                 expectNoEvents()
             }

@@ -16,7 +16,7 @@ import javax.inject.Inject
 class SongDetailsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val player: MusicPlayerController,
-) : ViewModel() {
+) : ViewModel(), MusicPlayerController by player {
 
     private val song: Song = requireNotNull(
         savedStateHandle.get<Song>(songArg)
@@ -57,11 +57,9 @@ class SongDetailsViewModel @Inject constructor(
         }
     }
 
-    internal fun onPlay() = player.play()
-    internal fun onPause() = player.pause()
-    internal fun onSeekTo(ms: Long) = player.seekTo(ms.coerceAtLeast(0))
-    internal fun onReplay() {
-        player.seekTo(0L); player.play()
+    internal fun replay() {
+        player.seekTo(0L);
+        player.play()
     }
 
     override fun onCleared() = player.release()

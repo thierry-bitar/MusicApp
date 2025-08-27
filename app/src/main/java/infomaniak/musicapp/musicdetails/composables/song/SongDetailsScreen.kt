@@ -35,10 +35,10 @@ fun SongDetailsRoute(
 
     SongDetailsScreen(
         uiState = uiState,
-        onPlay = viewModel::onPlay,
-        onPause = viewModel::onPause,
-        onSeekTo = viewModel::onSeekTo,
-        onReplay = viewModel::onReplay,
+        onPlay = viewModel::play,
+        onPause = viewModel::pause,
+        onSeekTo = viewModel::seekTo,
+        onReplay = viewModel::replay,
         onRetry = viewModel::retry,
         modifier = modifier
     )

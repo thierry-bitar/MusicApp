@@ -3,6 +3,7 @@ package infomaniak.musicapp.searchmusics.composables.paging.artists
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -54,7 +55,7 @@ internal fun Artists(
             Artist(
                 artist = artist,
                 onClick = { onArtistClick(artist) },
-                modifier = Modifier.padding(horizontal = 16.dp)
+                modifier = Modifier.fillMaxWidth()
             )
         }
 
@@ -65,7 +66,7 @@ internal fun Artists(
                 shouldLoadMore = shouldLoadMore,
                 isPagingError = isPagingError,
                 isEndReached = isEndReached,
-                modifier = Modifier.padding(top = 16.dp)
+                modifier = Modifier.padding(top = 16.dp, bottom = 16.dp)
             )
         }
     }
