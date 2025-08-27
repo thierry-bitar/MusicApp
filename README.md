@@ -1,53 +1,134 @@
-# recruitment-mobile-exercise
+# 🎵 MusicApp
 
-You can choose between 3 exercises:
-1. iTunes Store Lookup App
-2. Movies App
-3. Video Games App (for the brave ones)
+Application Android de recherche musicale développée en ≈ 4 jours.  
+_API
+utilisée : [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html#//apple_ref/doc/uid/TP40017632-CH5-SW1)_
 
-## 1) Music App
+---
 
-Create an app that lets you do simple searches using [Apple's iTunes Store API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/Searching.html).
+## 📱 États UI de la recherche
 
-For example to obtain all the entries of the musics corresponding to U2:
+L’écran de recherche gère explicitement tous les états clés de l’UI: inactif, chargement, résultat
+vide, et erreur.
 
-https://itunes.apple.com/search?term=U2&media=music
+| Idle                                          | Loading                                             | No Result                                              | Error                                           |
+|-----------------------------------------------|-----------------------------------------------------|--------------------------------------------------------|-------------------------------------------------|
+| ![Idle](screenshots/MusicApp_Idle_Screen.jpg) | ![Loading](screenshots/MusicApp_Loading_Screen.jpg) | ![No Result](screenshots/MusicApp_NoResult_Screen.jpg) | ![Error](screenshots/MusicApp_Error_Screen.jpg) |
 
-You will have between *one and two weeks* to complete this exercise. But please consider that *we will judge the result differently* based on the time taken to complete it. Especially on the quality of code and UI's details.
+---
 
-## 2) Movies App
+## 📄 États UI de la pagination et des résultats
 
-Create a simple application using the [TVmaze API](https://www.tvmaze.com/api).
+Aperçu des états clés liés à la pagination et à l’affichage des résultats:
 
+| Résultat de recherche                                    | Pagination : Loader                                              | Pagination : Fin                                                 | Pagination : Erreur                                            |
+|----------------------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------|
+| ![Search Result](screenshots/MusicApp_Search_Result.jpg) | ![Pagination Loader](screenshots/MusicApp_Pagination_Loader.jpg) | ![Pagination Ending](screenshots/MusicApp_Pagination_Ending.jpg) | ![Pagination Error](screenshots/MusicApp_Pagination_Error.jpg) |
 
-You will have between *one and two weeks* to complete this exercise. But please consider that *we will judge the result differently* based on the time taken to complete it. Especially on the quality of code and UI's details.
+---
 
-## 3) Video Games App (for the brave ones)
+## 🎧 États UI du player audio
 
-Create a video game library application that allows users to list their video games. And for a manager to manage these video game (create, edit, see list of others, etc.).
+Aperçu des états principaux du player intégré (SongDetails):
 
-For the backend, be creative. You can either create it or use an existing one, if you find any (you can use kDrive api to save files for example)
+| Idle                                          | Loader                                            | Playing                                             | Pause                                           |
+|-----------------------------------------------|---------------------------------------------------|-----------------------------------------------------|-------------------------------------------------|
+| ![Idle](screenshots/MusicApp_Player_Idle.jpg) | ![Loader](screenshots/MusicApp_Player_Loader.jpg) | ![Playing](screenshots/MusicApp_Player_Playing.jpg) | ![Pause](screenshots/MusicApp_Player_Pause.jpg) |
 
-As this exercise is harder, you will have between *two weeks and one month* to complete it. But please consider that *we will judge the result differently* based on the time taken to complete it. Especially on the quality of code and UI's details.
+| Replay                                            | Error                                           | Loader after Retry                                                        |
+|---------------------------------------------------|-------------------------------------------------|---------------------------------------------------------------------------|
+| ![Replay](screenshots/MusicApp_Player_Replay.jpg) | ![Error](screenshots/MusicApp_Player_Error.jpg) | ![Loader after Retry](screenshots/MusicApp_Player_Loader_After_Retry.jpg) |
 
+---
 
-## Information
+## 🏛️ Architecture & Stack
 
-You are free in the choice of library and display but you must return a project coded in Swift for iOS or Kotlin for Android. You are also free regarding the display of data, the layout and navigation in the app.
+- **MVVM + Clean Architecture** (UseCases, Repository, Feature)
+- **UI** : Jetpack Compose (Material3, animations, state hoisting)
+- **Navigation** : Jetpack Navigation Compose
+- **DI** : Hilt (ViewModelScoped, Singleton…)
+- **Audio Player** : ExoPlayer encapsulé via `MusicPlayerController` (interface testable)
+- **Asynchronicité** : Kotlin Coroutines, Flow, SavedStateHandle & getStateFlow (process-death safe)
+- **Sérialisation** : kotlinx.serialization
 
-Use this git repo directly
+---
 
-## Disclaimer Against AI Usage in this Technical Test
+## 📦 Modularisation
 
-While completing this technical test, please refrain from using Artificial Intelligence (AI) assistance or language model generation tools (such as ChatGPT, Copilot, or similar technologies). 
+- **`app`**  
+  Hôte UI & navigation (Jetpack Compose).  
+  Contient les écrans _Search_, _SongDetails_, _AlbumDetails_, _ArtistDetails_ et orchestre la
+  jonction **ViewModel ↔
+  UseCases**.  
+  _Dépend de_ : `domains`, `repositories`.
 
-Although we encourage innovation and creative problem solving, using AI to code, design, or draft responses obscures the candidate's expertise and skills required for this position.
+- **`domains`**  
+  Logique métier **pure** : entités, use cases, contrats de repository.  
+  **Aucune dépendance Android** → module 100 % JVM/KMP-friendly.
 
-If evidence suggests that AI-generated materials contributed substantially to your submission, the test results may be deemed invalid, leading to unfavorable consequences for your candidacy.
+- **`repositories`**  
+  Accès aux données : implémentations des contrats (appels réseau iTunes, mapping DTO → domain).  
+  _Dépend de_ : `domains`.
 
-## Time Tracking with Wakatime
+**Chaque module est entièrement testé.**
 
-You can use [Wakatime](https://wakatime.com/) to share how you spent your time working on the exercise.
+---
 
-Please note that this is purely for informational purposes, and we won't award any extra points based on your time.
-It's a tool to help you track your progress and give us more insights.
+## ⚙️ Gradle
+
+- Gradle KTS avec `libs.versions.toml` (catalogue de versions centralisé)
+- Plugins : Hilt, KSP, Kotlinx-Serialization
+- Support de `testFixtures` pour partager les modèles de test
+
+> 🛠️ **Configuration centralisée**  
+> Tous les paramètres communs (SDK, JVM, runners, Compose…) sont définis à la racine pour :
+> - Éviter toute duplication
+> - Garantir l’homogénéité
+> - Simplifier la maintenance
+
+---
+
+## ✅ Testing
+
+- **Unit tests 100 % isolés (JVM), Turbine sur StateFlow:**
+    - ViewModels testés avec des **Fakes** pour les UseCases et Repositories
+    - UseCases et Repositories testés de façon indépendante
+    - Player audio (`MusicPlayerController`) testé avec un **Fake** (simulateur d’ExoPlayer)
+- **Cas métier couverts** :
+    - **Général** : succès, erreur, loading, retry
+    - **Pagination** : fin de liste, erreurs, doublons, loading, retry
+    - **Player audio** : seek, replay, loading, idempotence, release
+
+---
+
+## ✨ Features
+
+- Recherche de **chansons, albums, artistes** (API iTunes)
+- Navigation multi-écrans fluide
+- **Pagination** : gestion manuelle de l’offset, des erreurs, de la limite de résultats et
+  filtrage des doublons côté client (API non idempotente)
+- **Animations légères** : crossfade sur transitions et listes
+- **SongDetails** : player audio, timeline interactive, titre animé, liens externes
+- **AlbumDetails** : pochette, genre, année, copyright, liens Apple Music
+- **ArtistDetails** : infos de base + redirection
+- **Gestion complète des états UI** : loading, erreur, idle, retry, pour la recherche et la
+  pagination
+
+## 🚀 Axes d’amélioration
+
+- **UX & Fonctionnel**
+    - Pager pour le swipe entre catégories, persistance d’état
+    - Gestion des favoris (sauvegarde locale avec Room)
+    - Historique des 10 dernières recherches (sauvegarde locale avec Room)
+    - Écrans de détails enrichis : API additionnelles (plus d’infos, plus de contenus, qualité photo
+      accrue)
+- **Technique**
+    - Lecture audio en background (MediaSessionService)
+    - Gestion fine des erreurs réseau (messages adaptés à l’utilisateur, gestion du mode avion,
+      reconnection
+      automatique)
+- **Architecture & Build**
+    - Modulaire : extraction de nouveaux modules “features” au besoin
+    - Gradle build logic : factorisation avancée via plugins custom
+
+---
